@@ -1,8 +1,14 @@
+import romanNumeralClasses.RomanNumeralConverter;
+
 /**
- * Created by Ronan on 30/04/2017.
+ * tests for Roman Numeral Converter
  */
 public class testsForRomanNumerals {
 
+// class to be tested
 
+  RomanNumeralConverter romanNumeralConverter = new RomanNumeralConverter();
+
+//  assertThat();
 
 }
