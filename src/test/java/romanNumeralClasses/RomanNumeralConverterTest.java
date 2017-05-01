@@ -1,5 +1,6 @@
 package romanNumeralClasses;
 
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -7,16 +8,31 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
- * Created by Ronan on 30/04/2017.
+ * Tests for roman numeral converter
  */
-@Test
 public class RomanNumeralConverterTest {
 
-  RomanNumeralConverter romanNumeralConverter = new RomanNumeralConverter();
+  private RomanNumeralConverter romanNumeralConverter = new RomanNumeralConverter();
 
-  public void testRomanNumeralConverterFromArabicToRoman() throws Exception {
-    assertThat(romanNumeralConverter.convert(1),
-               is(equalTo("I")));
+  @DataProvider(name = "intProvider")
+  public Object[][] integer() {
+    return new Object[][]{
+        {1, "I"},
+        {5, "V"},
+        {9, "IX"},
+        {26, "XXVI"},
+        {48, "XLVIII"},
+        {150, "CL"},
+        {1992, "MCMXCII"},
+        {2017, "MMXVII"}
+    };
+  }
+
+  @Test(dataProvider = "intProvider")
+  public void testRomanNumeralConverterFromArabicToRoman(int arabicNumber, String romanNumber)
+      throws Exception {
+    assertThat(romanNumeralConverter.convert(arabicNumber),
+               is(equalTo(romanNumber)));
   }
 
 }
