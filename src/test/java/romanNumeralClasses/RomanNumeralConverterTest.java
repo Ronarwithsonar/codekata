@@ -28,6 +28,20 @@ public class RomanNumeralConverterTest {
     };
   }
 
+  @DataProvider(name = "stringProvider")
+  public Object[][] string() {
+    return new Object[][]{
+        {"I", 1},
+        {"V", 5},
+        {"IX", 9},
+        {"XXVI", 26},
+        {"XLVIII", 48},
+        {"CL", 150},
+        {"MCMXCII", 1992},
+        {"MMXVII", 2017}
+    };
+  }
+
   @Test(dataProvider = "intProvider")
   public void testRomanNumeralConverterFromArabicToRoman(int arabicNumber, String romanNumber)
       throws Exception {
@@ -35,4 +49,10 @@ public class RomanNumeralConverterTest {
                is(equalTo(romanNumber)));
   }
 
+  @Test(dataProvider = "stringProvider")
+  public void testRomanNumeralConverterFromRomanToArabic(String romanNumber, int arabicNumber)
+      throws Exception {
+    assertThat(romanNumeralConverter.convert(romanNumber),
+               is(equalTo(arabicNumber)));
+  }
 }
